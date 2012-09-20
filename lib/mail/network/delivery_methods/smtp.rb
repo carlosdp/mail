@@ -147,7 +147,7 @@ module Mail
         # raise IOError 'closed session' unless @socket
         smtp_obj.mailfrom envelope_from
         if mail.respond_to?(:envelope_recipient) && !mail.envelope_recipient.nil?
-          smtp_obj.rcptto_list(mail.envelope_recipient) {data message} 
+          smtp_obj.rcptto_list(mail.rcpt_addrs) {data message} 
         else
           smtp_obj.rcptto_list(destinations) {data message}
         end

@@ -1215,6 +1215,12 @@ module Mail
       to ? [to].flatten : []
     end
 
+    # Returns an array of addresses (the encoded value) in the RCPT field,
+    # if no RCPT field, returns an empty array
+    def recpt_addrs
+      envelope_recipient ? [envelope_recipient].flatten : []
+    end
+
     # Returns an array of addresses (the encoded value) in the Cc field,
     # if no Cc field, returns an empty array
     def cc_addrs
