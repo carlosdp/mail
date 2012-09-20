@@ -1217,7 +1217,7 @@ module Mail
 
     # Returns an array of addresses (the encoded value) in the RCPT field,
     # if no RCPT field, returns an empty array
-    def recpt_addrs
+    def rcpt_addrs
       envelope_recipient ? [envelope_recipient].flatten : []
     end
 
