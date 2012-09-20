@@ -1024,7 +1024,7 @@ module Mail
     end
 
     # Returns the Envelope RCPT value of the mail object, as a single string of an address
-    # spec. A RCPT per RFC 2822 can be multiple addresses.
+    # spec. A RCPT per RFC 2821 can be multiple addresses.
     #
     # Example:
     #   mail.envelope_recipient = 'Mikel <mikel@test.lindsaar.net>'
