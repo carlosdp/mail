@@ -145,7 +145,7 @@ module Mail
       response = nil
       smtp.start(settings[:domain], settings[:user_name], settings[:password], settings[:authentication]) do |smtp_obj|
         if mail.respond_to?(:envelope_recipient) && !mail.envelope_recipient.nil?
-          raise IOError.new('closed session') unless @socket
+          raise IOError.new('closed session') unless smtp_obj.started?
           smtp_obj.mailfrom envelope_from
           response = smtp_obj.rcptto_list(mail.rcpt_addrs) {smtp_obj.data message} 
         else
