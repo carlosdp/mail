@@ -32,4 +32,5 @@ module Mail
   autoload :SenderField, 'mail/fields/sender_field'
   autoload :SubjectField, 'mail/fields/subject_field'
   autoload :ToField, 'mail/fields/to_field'
+  autoload :EnvelopeRecipientField, 'mail/fields/rcptto_field'
 end
