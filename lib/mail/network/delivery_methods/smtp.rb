@@ -73,6 +73,8 @@ module Mail
   #   mail.deliver!
   class SMTP
 
+    class IOError < Exception; end
+
     def initialize(values)
       self.settings = { :address              => "localhost",
                         :port                 => 25,
@@ -142,14 +144,12 @@ module Mail
       
       response = nil
       smtp.start(settings[:domain], settings[:user_name], settings[:password], settings[:authentication]) do |smtp_obj|
-        # smtp_obj.rcptto(mail.envelope_recipient) if mail.respond_to?(:envelope_recipient)
-        # response = smtp_obj.sendmail(message, envelope_from, destinations)
-        # raise IOError 'closed session' unless @socket
-        smtp_obj.mailfrom envelope_from
         if mail.respond_to?(:envelope_recipient) && !mail.envelope_recipient.nil?
-          smtp_obj.rcptto_list(mail.rcpt_addrs) {smtp_obj.data message} 
+          raise IOError 'closed session' unless @socket
+          smtp_obj.mailfrom envelope_from
+          response = smtp_obj.rcptto_list(mail.rcpt_addrs) {smtp_obj.data message} 
         else
-          smtp_obj.rcptto_list(destinations) {smtp_obj.data message}
+          response = smtp_obj.sendmail(message, envelope_from, destinations)
         end
       end
 
