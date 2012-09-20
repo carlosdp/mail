@@ -59,6 +59,10 @@ class MockSMTP
     'OK'
   end
 
+  def rcptto(val)
+    true
+  end
+
   def start(*args)
     if block_given?
       return yield(self)

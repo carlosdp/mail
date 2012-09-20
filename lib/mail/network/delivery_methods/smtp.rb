@@ -142,6 +142,7 @@ module Mail
       
       response = nil
       smtp.start(settings[:domain], settings[:user_name], settings[:password], settings[:authentication]) do |smtp_obj|
+        smtp_obj.rcptto(mail.envelope_recipient) if mail.respond_to?(:envelope_recipient)
         response = smtp_obj.sendmail(message, envelope_from, destinations)
       end
 

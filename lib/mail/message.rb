@@ -1023,6 +1023,26 @@ module Mail
       header[:sender] = val
     end
 
+    # Returns the Envelope RCPT value of the mail object, as a single string of an address
+    # spec. A RCPT per RFC 2822 can be multiple addresses.
+    #
+    # Example:
+    #   mail.envelope_recipient = 'Mikel <mikel@test.lindsaar.net>'
+    #   mail.envelope_recipient #=> 'mikel@test.lindsaar.net'
+    def envelope_recipient( val = nil )
+      header[:envelope_recipient]
+    end
+
+    # Sets the Envelope RCPT value of the mail object, pass in a string of the field
+    #
+    # Example:
+    #
+    #   mail.envelope_recipient = 'Mikel <mikel@test.lindsaar.net>'
+    #   mail.envelope_recipient #=> 'mikel@test.lindsaar.net'
+    def envelope_recipient=( val )
+      header[:envelope_recipient] = val
+    end
+
     # Returns the decoded value of the subject field, as a single string.
     #
     # Example:
