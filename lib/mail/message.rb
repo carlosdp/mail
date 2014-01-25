@@ -1030,7 +1030,7 @@ module Mail
     #   mail.envelope_recipient = 'Mikel <mikel@test.lindsaar.net>'
     #   mail.envelope_recipient #=> 'mikel@test.lindsaar.net'
     def envelope_recipient( val = nil )
-      default :envelope_recipient, val
+      default :rcpt, val
     end
 
     # Sets the Envelope RCPT value of the mail object, pass in a string of the field
@@ -1040,7 +1040,7 @@ module Mail
     #   mail.envelope_recipient = 'Mikel <mikel@test.lindsaar.net>'
     #   mail.envelope_recipient #=> 'mikel@test.lindsaar.net'
     def envelope_recipient=( val )
-      header[:envelope_recipient] = val
+      header[:rcpt] = val
     end
 
     # Returns the decoded value of the subject field, as a single string.
